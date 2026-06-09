@@ -1,5 +1,6 @@
 import { tutorsSingleDataFetching } from "@/lib/data";
 import BookSessionBtn from "@/ui/BookSessionBtn";
+import { Button } from "@heroui/react";
 import Image from "next/image";
 import React from "react";
 
@@ -27,7 +28,7 @@ const TutorsBookingPage = async ({ params }) => {
       <div className="flex gap-8 items-center border border-slate-200 p-4 shadow">
         <div>
           <Image
-            className="w-full"
+            className="w-[90vh]"
             src={tutorImage}
             alt={"tutorName"}
             width={3000}
@@ -69,7 +70,9 @@ const TutorsBookingPage = async ({ params }) => {
             <span className="font-semibold">Session Start Date: </span>
             {sessionStartDate}
           </p>
-          <BookSessionBtn>Book Session</BookSessionBtn>
+          <div>
+            <BookSessionBtn>Book Session</BookSessionBtn>
+          </div>
         </div>
       </div>
     </div>

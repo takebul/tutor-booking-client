@@ -1,7 +1,7 @@
 import TutorsFeaturesCard from "./TutorsFeaturesCard";
 
 const TutorsFeatures = async () => {
-  const res = await fetch(`http://localhost:8541/tutors`);
+  const res = await fetch(`http://localhost:8541/tutorsFeatures`);
   const tutors = await res.json();
   return (
     <section>
