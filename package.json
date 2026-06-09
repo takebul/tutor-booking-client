@@ -9,15 +9,28 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "16.2.7",
+    "@better-auth/mongo-adapter": "^1.6.11",
+    "@gravity-ui/icons": "^2.18.0",
+    "@heroui/react": "^3.0.5",
+    "@heroui/styles": "^3.0.5",
+    "@iconify/react": "^6.0.2",
+    "better-auth": "^1.6.11",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.2.0",
+    "next": "16.2.6",
+    "next-themes": "^0.4.6",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-hot-toast": "^2.6.0",
+    "react-icons": "^5.6.0",
+    "styled-components": "^6.4.2",
+    "swiper": "^12.2.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "16.2.7",
+    "eslint-config-next": "16.2.6",
     "tailwindcss": "^4"
   }
 }
