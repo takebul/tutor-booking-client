@@ -44,7 +44,7 @@ const LoginPage = () => {
   return (
     <div className="my-10">
       <Form
-        className="flex w-xl mx-auto flex-col gap-4 border-2 border-gray-300 rounded-sm p-4 shadow"
+        className="flex w-lg mx-auto flex-col gap-4 border-2 border-gray-300 rounded-sm p-4 shadow"
         onSubmit={handleLogin}
       >
         <div className="text-center my-4 space-y-4">
@@ -111,14 +111,13 @@ const LoginPage = () => {
             Must be at least 8 characters with 1 uppercase and 1 number
           </Description>
           <FieldError />
+          <div className="mb-1 text-right text-blue-700 font-medium">
+            <Link href={`forgot-password`}>Forgot Password?</Link>
+          </div>
         </TextField>
         <div className="flex gap-2">
-          <Button type="submit">
-            <Check />
-            Submit
-          </Button>
-          <Button type="reset" variant="secondary">
-            Reset
+          <Button className={"w-full rounded-sm"} type="submit">
+            Login
           </Button>
         </div>
         <div>
