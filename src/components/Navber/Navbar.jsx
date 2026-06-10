@@ -48,8 +48,15 @@ const Navbar = () => {
           </NavLink>
         </div>
         <div className="flex items-center gap-4">
-          <LoginBtn>Login</LoginBtn>
-          <LogoutBtn>Logout</LogoutBtn>
+          <Link href={`/login`}>
+            <LoginBtn>Login</LoginBtn>
+          </Link>
+          <Link href={`signup`}>
+            <LoginBtn>Signup</LoginBtn>
+          </Link>
+          <Link href={`/logout`}>
+            <LogoutBtn>Logout</LogoutBtn>
+          </Link>
           <ThemeToggle />
         </div>
       </div>

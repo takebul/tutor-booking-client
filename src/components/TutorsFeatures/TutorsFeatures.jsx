@@ -4,7 +4,7 @@ const TutorsFeatures = async () => {
   const res = await fetch(`http://localhost:8541/tutorsFeatures`);
   const tutors = await res.json();
   return (
-    <section>
+    <section className="w-11/12 mx-auto">
       <div className="text-center">
         <h1 className="text-5xl font-bold">Our Popular Tutors</h1>
         <p className="text-muted text-lg">
