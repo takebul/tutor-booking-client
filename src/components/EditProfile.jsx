@@ -1,10 +1,12 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
+import { useRouter } from "next/navigation";
 import { FaEdit } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 
 const EditProfile = () => {
+  const router = useRouter();
   const handleEdit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -15,7 +17,7 @@ const EditProfile = () => {
       name,
       image,
     });
-    window.location.reload();
+    router.refresh();
   };
   return (
     <div>

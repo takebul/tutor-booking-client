@@ -1,7 +1,12 @@
+"use client";
+
 import { Button, Table } from "@heroui/react";
 import { Icon } from "@iconify/react";
+import { EditTutorsData } from "./Modal";
+import { useRouter } from "next/navigation";
 
 const MyTutors = ({ tutor }) => {
+  const router = useRouter();
   return (
     <div>
       <Table>
@@ -25,9 +30,9 @@ const MyTutors = ({ tutor }) => {
               <Table.Cell>{tutor?.sessionStartDate}</Table.Cell>
               <Table.Cell>
                 <div className="flex items-center gap-1">
-                  <Button isIconOnly size="sm" variant="tertiary">
+                  <EditTutorsData tutor={tutor}>
                     <Icon className="size-4" icon="gravity-ui:pencil" />
-                  </Button>
+                  </EditTutorsData>
                   <Button isIconOnly size="sm" variant="danger-soft">
                     <Icon className="size-4" icon="gravity-ui:trash-bin" />
                   </Button>
