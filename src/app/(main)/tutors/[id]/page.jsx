@@ -29,7 +29,10 @@ const TutorsBookingPage = async ({ params }) => {
         <div>
           <Image
             className="w-[90vh]"
-            src={tutorImage}
+            src={
+              tutorImage ||
+              "https://t3.ftcdn.net/jpg/18/74/54/54/240_F_1874545443_7KFbKGSBWFTSR7QUejTrUn4QmFsH4erN.jpg"
+            }
             alt={"tutorName"}
             width={3000}
             height={300}

@@ -1,7 +1,8 @@
 import Hero from "@/components/Hero";
+import OurAllFeature from "@/components/OurAllFeature";
 import Stats from "@/components/Stats";
 import TutorsFeatures from "@/components/TutorsFeatures/TutorsFeatures";
-import WorldWideTutor from "@/components/WorldWideTutor";
+import ModernSolutions from "@/components/ModernSolution";
 
 export default function Home() {
   return (
@@ -9,7 +10,8 @@ export default function Home() {
       <Hero />
       <Stats />
       <TutorsFeatures />
-      <WorldWideTutor />
+      <OurAllFeature />
+      <ModernSolutions />
     </>
   );
 }

@@ -18,8 +18,11 @@ const TutorsFeaturesCard = ({ tutor }) => {
     <div className="space-y-2 border rounded-sm border-slate-700 hover:shadow-md shadow-slate-400">
       <Image
         className="aspect-video object-cover"
-        src={tutorImage}
-        alt={tutorName}
+        src={
+          tutorImage ||
+          "https://t3.ftcdn.net/jpg/18/74/54/54/240_F_1874545443_7KFbKGSBWFTSR7QUejTrUn4QmFsH4erN.jpg"
+        }
+        alt={tutorName || "Tutor Image"}
         width={400}
         height={200}
       />
