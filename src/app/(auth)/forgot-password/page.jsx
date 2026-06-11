@@ -7,6 +7,7 @@ import {
   InputGroup,
   FieldError,
   Button,
+  Description,
 } from "@heroui/react";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { authClient } from "@/lib/auth-client";
@@ -72,7 +73,24 @@ export default function ResetPasswordPage() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Current Password Field */}
-          <TextField>
+          <TextField
+            isRequired
+            minLength={6}
+            name="password"
+            type="password"
+            validate={(value) => {
+              if (value.length < 6) {
+                return "Password must be at least 6 characters";
+              }
+              if (!/[A-Z]/.test(value)) {
+                return "Password must contain at least one uppercase letter";
+              }
+              if (!/[0-9]/.test(value)) {
+                return "Password must contain at least one number";
+              }
+              return null;
+            }}
+          >
             <Label>Current Password</Label>
             <InputGroup>
               <InputGroup.Input
@@ -96,10 +114,31 @@ export default function ResetPasswordPage() {
                 </button>
               </InputGroup.Suffix>
             </InputGroup>
+            <Description>
+              Must be at least 6 characters with 1 uppercase and 1 number
+            </Description>
+            <FieldError />
           </TextField>
 
           {/* New Password Field */}
-          <TextField>
+          <TextField
+            isRequired
+            minLength={6}
+            name="password"
+            type="password"
+            validate={(value) => {
+              if (value.length < 6) {
+                return "Password must be at least 6 characters";
+              }
+              if (!/[A-Z]/.test(value)) {
+                return "Password must contain at least one uppercase letter";
+              }
+              if (!/[0-9]/.test(value)) {
+                return "Password must contain at least one number";
+              }
+              return null;
+            }}
+          >
             <Label>New Password</Label>
             <InputGroup>
               <InputGroup.Input
@@ -123,10 +162,32 @@ export default function ResetPasswordPage() {
                 </button>
               </InputGroup.Suffix>
             </InputGroup>
+            <Description>
+              Must be at least 6 characters with 1 uppercase and 1 number
+            </Description>
+            <FieldError />
           </TextField>
 
           {/* Confirm New Password Field */}
-          <TextField isInvalid={!passwordsMatch}>
+          <TextField
+            isInvalid={!passwordsMatch}
+            isRequired
+            minLength={6}
+            name="password"
+            type="password"
+            validate={(value) => {
+              if (value.length < 6) {
+                return "Password must be at least 6 characters";
+              }
+              if (!/[A-Z]/.test(value)) {
+                return "Password must contain at least one uppercase letter";
+              }
+              if (!/[0-9]/.test(value)) {
+                return "Password must contain at least one number";
+              }
+              return null;
+            }}
+          >
             <Label>Confirm New Password</Label>
             <InputGroup>
               <InputGroup.Input
@@ -151,6 +212,10 @@ export default function ResetPasswordPage() {
               </InputGroup.Suffix>
             </InputGroup>
             <FieldError>Passwords do not match</FieldError>
+            <Description>
+              Must be at least 6 characters with 1 uppercase and 1 number
+            </Description>
+            <FieldError />
           </TextField>
 
           <Button

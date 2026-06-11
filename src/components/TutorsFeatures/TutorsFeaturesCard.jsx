@@ -33,7 +33,7 @@ const TutorsFeaturesCard = ({ tutor }) => {
         <p>Fee: ${hourlyFee}/hr</p>
         <div>
           <Link href={`/tutors/${_id}`}>
-            <BookSessionBtn>View Details</BookSessionBtn>
+            <BookSessionBtn>Book Session</BookSessionBtn>
           </Link>
         </div>
       </div>

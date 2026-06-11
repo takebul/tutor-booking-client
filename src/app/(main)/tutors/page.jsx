@@ -17,7 +17,7 @@ const TutorsPage = async () => {
         <SearchFiltering />
         <DateFiltering />
       </div>
-      <div className="grid grid-cols-4 gap-4 mt-4">
+      <div className="grid grid-cols-3 gap-4 mt-4">
         {tutors.map((tutor) => (
           <TutorsFeaturesCard key={tutor._id} tutor={tutor} />
         ))}

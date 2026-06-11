@@ -13,10 +13,12 @@ import {
 } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 const SignupPage = () => {
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -34,10 +36,9 @@ const SignupPage = () => {
       image,
     });
 
-    console.log({ data });
-
     if (data) {
       alert("Signup successful");
+      router.push("/login");
     }
     if (error) {
       alert(error.message);
@@ -53,7 +54,7 @@ const SignupPage = () => {
         className="flex flex-col w-2xl gap-4 border-2 border-gray-300 rounded-sm p-4 shadow bg-white"
         onSubmit={handleSubmit}
       >
-        <div className="text-center my-4">
+        <div className="text-center my-4 space-y-2">
           <h1 className="font-bold text-4xl">Signup</h1>
           <p className="text-muted">Create your account to start learning</p>
         </div>
@@ -84,12 +85,12 @@ const SignupPage = () => {
         </TextField>
         <TextField
           isRequired
-          minLength={8}
+          minLength={6}
           name="password"
           type="password"
           validate={(value) => {
-            if (value.length < 8) {
-              return "Password must be at least 8 characters";
+            if (value.length < 6) {
+              return "Password must be at least 6 characters";
             }
             if (!/[A-Z]/.test(value)) {
               return "Password must contain at least one uppercase letter";
@@ -124,7 +125,7 @@ const SignupPage = () => {
             </InputGroup.Suffix>
           </InputGroup>
           <Description>
-            Must be at least 8 characters with 1 uppercase and 1 number
+            Must be at least 6 characters with 1 uppercase and 1 number
           </Description>
           <FieldError />
         </TextField>

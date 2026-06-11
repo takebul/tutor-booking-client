@@ -11,7 +11,7 @@ const TutorsFeatures = async () => {
           Here are few of the Verified Teachers
         </p>
       </div>
-      <div className="grid grid-cols-4 gap-4 mt-4">
+      <div className="grid grid-cols-3 gap-4 mt-4">
         {tutors.map((tutor) => (
           <TutorsFeaturesCard key={tutor._id} tutor={tutor} />
         ))}

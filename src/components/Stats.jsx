@@ -5,8 +5,8 @@ const Stats = () => {
     <div className="justify-items-center my-10">
       <section className="p-4 my-6 md:p-8 dark:bg-gray-100 dark:text-gray-800">
         <div className="container grid grid-cols-1 gap-6 m-4 mx-auto md:m-0 md:grid-cols-2 xl:grid-cols-3">
-          <div className="flex overflow-hidden rounded-lg dark:bg-gray-50 dark:text-gray-800">
-            <div className="flex items-center justify-center px-4 dark:bg-violet-600 dark:text-gray-100">
+          <div className="flex overflow-hidden bg-pink-400 rounded-lg dark:bg-gray-50 dark:text-gray-800">
+            <div className="flex items-center bg-purple-600 justify-center px-4 dark:bg-violet-600 dark:text-gray-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
@@ -20,11 +20,11 @@ const Stats = () => {
             </div>
             <div className="flex items-center justify-between flex-1 p-3">
               <p className="text-2xl font-semibold">200+</p>
-              <p>Projects</p>
+              <p>Tutors</p>
             </div>
           </div>
-          <div className="flex overflow-hidden rounded-lg dark:bg-gray-50 dark:text-gray-800">
-            <div className="flex items-center justify-center px-4 dark:bg-violet-600 dark:text-gray-100">
+          <div className="flex overflow-hidden bg-purple-400 rounded-lg dark:bg-gray-50 dark:text-gray-800">
+            <div className="flex items-center bg-purple-600 justify-center px-4 dark:bg-violet-600 dark:text-gray-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
@@ -37,11 +37,11 @@ const Stats = () => {
             </div>
             <div className="flex items-center justify-between flex-1 p-3">
               <p className="text-2xl font-semibold">7 500+</p>
-              <p>Customers</p>
+              <p>Learners</p>
             </div>
           </div>
-          <div className="flex overflow-hidden rounded-lg dark:bg-gray-50 dark:text-gray-800">
-            <div className="flex items-center justify-center px-4 dark:bg-violet-600 dark:text-gray-100">
+          <div className="flex overflow-hidden bg-pink-400 rounded-lg dark:bg-gray-50 dark:text-gray-800">
+            <div className="flex items-center bg-purple-600 justify-center px-4 dark:bg-violet-600 dark:text-gray-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
@@ -57,8 +57,8 @@ const Stats = () => {
               <p>Awards</p>
             </div>
           </div>
-          <div className="flex overflow-hidden rounded-lg dark:bg-gray-50 dark:text-gray-800">
-            <div className="flex items-center justify-center px-4 dark:bg-violet-600 dark:text-gray-100">
+          <div className="flex overflow-hidden bg-purple-400 rounded-lg dark:bg-gray-50 dark:text-gray-800">
+            <div className="flex items-center justify-center px-4 bg-purple-600 dark:bg-violet-600 dark:text-gray-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
@@ -74,8 +74,8 @@ const Stats = () => {
               <p>Support</p>
             </div>
           </div>
-          <div className="flex overflow-hidden rounded-lg dark:bg-gray-50 dark:text-gray-800">
-            <div className="flex items-center justify-center px-4 dark:bg-violet-600 dark:text-gray-100">
+          <div className="flex overflow-hidden bg-pink-400 rounded-lg dark:bg-gray-50 dark:text-gray-800">
+            <div className="flex items-center bg-purple-600 justify-center px-4 dark:bg-violet-600 dark:text-gray-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
@@ -91,8 +91,8 @@ const Stats = () => {
               <p>Uptime</p>
             </div>
           </div>
-          <div className="flex overflow-hidden rounded-lg dark:bg-gray-50 dark:text-gray-800">
-            <div className="flex items-center justify-center px-4 dark:bg-violet-600 dark:text-gray-100">
+          <div className="flex overflow-hidden rounded-lg dark:bg-gray-50 dark:text-gray-800 bg-purple-400">
+            <div className="flex items-center bg-purple-500 justify-center px-4 dark:bg-violet-600 dark:text-gray-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
@@ -103,9 +103,9 @@ const Stats = () => {
                 <path d="M436.574,120H352V64H32V408a64.072,64.072,0,0,0,64,64H288a64.072,64.072,0,0,0,64-64v-8h84.574A59.493,59.493,0,0,0,496,340.574V179.426A59.493,59.493,0,0,0,436.574,120ZM464,340.574A27.457,27.457,0,0,1,436.574,368H320v40a32.036,32.036,0,0,1-32,32H96a32.036,32.036,0,0,1-32-32V96H320v56H436.574A27.457,27.457,0,0,1,464,179.426Z"></path>
               </svg>
             </div>
-            <div className="flex items-center justify-between flex-1 p-3">
-              <p className="text-2xl font-semibold">720 L</p>
-              <p>Coffee</p>
+            <div className="flex gap-1 items-center justify-between flex-1 p-3">
+              <p className="text-2xl font-semibold">720+</p>
+              <p> Service Providers</p>
             </div>
           </div>
         </div>
