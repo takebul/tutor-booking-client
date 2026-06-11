@@ -1,4 +1,4 @@
-import { Button } from "@heroui/react";
+import { Button, Avatar } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -83,7 +83,21 @@ const Navbar = async () => {
         </div>
         <div className="flex items-center gap-4">
           {user ? (
-            <Logout />
+            <>
+              <Logout />
+              <div>
+                <Link href={"/profile"}>
+                  <Avatar>
+                    <Avatar.Image
+                      referrerPolicy="no-referrer"
+                      alt={user?.name}
+                      src={user?.image}
+                    />
+                    <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                  </Avatar>
+                </Link>
+              </div>
+            </>
           ) : (
             <>
               <Link href={`/login`}>
