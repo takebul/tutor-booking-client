@@ -6,7 +6,6 @@ import logo from "@/assets/logo.png";
 import NavLink from "./NavLink";
 import ThemeToggle from "./ThemeToggle";
 import { NavbarMenu } from "./NavbarMenu";
-import LogoutBtn from "@/ui/LogoutBtn";
 import LoginBtn from "@/ui/LoginBtn";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";

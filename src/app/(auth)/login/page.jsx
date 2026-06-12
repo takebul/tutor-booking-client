@@ -15,6 +15,7 @@ import { Icon } from "@iconify/react";
 import { error } from "better-auth/api";
 import Link from "next/link";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -32,11 +33,11 @@ const LoginPage = () => {
       callbackURL: "/",
     });
     if (data) {
-      alert("Login successful");
+      toast.success("Login successful");
     }
 
     if (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -46,7 +47,7 @@ const LoginPage = () => {
     });
     if (data) {
       setTimeout(() => {
-        alert("Login successful");
+        toast.success("Login successful");
       }, 1000);
     }
   };

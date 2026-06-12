@@ -1,8 +1,8 @@
+import BookSessionPage from "@/components/BookSession";
 import { tutorsSingleDataFetching } from "@/lib/data";
 import BookSessionBtn from "@/ui/BookSessionBtn";
 import { Button } from "@heroui/react";
 import Image from "next/image";
-import React from "react";
 
 const TutorsBookingPage = async ({ params }) => {
   const { id } = await params;
@@ -74,7 +74,7 @@ const TutorsBookingPage = async ({ params }) => {
             {sessionStartDate}
           </p>
           <div>
-            <BookSessionBtn>Book Session</BookSessionBtn>
+            <BookSessionPage tutor={tutor} id={id} />
           </div>
         </div>
       </div>

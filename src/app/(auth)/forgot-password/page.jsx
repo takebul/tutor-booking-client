@@ -12,6 +12,7 @@ import {
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function ResetPasswordPage() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export default function ResetPasswordPage() {
       });
 
       if (data) {
-        alert("Password change successful!");
+        toast.success("Password change successful!");
         // Clear form states
         setCurrentPassword("");
         setNewPassword("");
@@ -52,7 +53,7 @@ export default function ResetPasswordPage() {
       }
 
       if (error) {
-        alert(error.message || "An error occurred");
+        toast.error(error.message || "An error occurred");
       }
 
       console.log({ data, error });

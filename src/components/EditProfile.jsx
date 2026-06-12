@@ -1,23 +1,37 @@
 "use client";
-import { authClient } from "@/lib/auth-client";
-import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
-import { useRouter } from "next/navigation";
+import { authClient, useSession } from "@/lib/auth-client";
+import { revalidatePage } from "@/lib/serverAction";
+import {
+  Button,
+  Form,
+  Input,
+  Label,
+  Modal,
+  Surface,
+  TextField,
+} from "@heroui/react";
+import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 
 const EditProfile = () => {
-  const router = useRouter();
+  const session = useSession();
+  const user = session?.data?.user;
+  console.log(user);
   const handleEdit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const image = e.target.image.value;
     console.log({ name, image });
 
-    await authClient.updateUser({
+    const data = await authClient.updateUser({
       name,
       image,
     });
-    router.refresh();
+    if (data) {
+      toast.success("Profile Update Successful");
+      await revalidatePage("/profile");
+    }
   };
   return (
     <div>
@@ -45,12 +59,22 @@ const EditProfile = () => {
               </Modal.Header>
               <Modal.Body className="p-6">
                 <Surface variant="default">
-                  <form onSubmit={handleEdit} className="flex flex-col gap-4">
-                    <TextField className="w-full" name="name" type="text">
+                  <Form onSubmit={handleEdit} className="flex flex-col gap-4">
+                    <TextField
+                      defaultValue={user?.name}
+                      className="w-full"
+                      name="name"
+                      type="text"
+                    >
                       <Label>Name</Label>
                       <Input placeholder="Your Name" />
                     </TextField>
-                    <TextField className="w-full" name="image" type="text">
+                    <TextField
+                      defaultValue={user?.image}
+                      className="w-full"
+                      name="image"
+                      type="text"
+                    >
                       <Label>Image URL</Label>
                       <Input placeholder="Image URL" />
                     </TextField>
@@ -62,7 +86,7 @@ const EditProfile = () => {
                         <FaEdit /> Edit
                       </Button>
                     </Modal.Footer>
-                  </form>
+                  </Form>
                 </Surface>
               </Modal.Body>
             </Modal.Dialog>

@@ -37,14 +37,12 @@ const SignupPage = () => {
     });
 
     if (data) {
-      alert("Signup successful");
+      toast.success("Signup successful");
       router.push("/login");
     }
     if (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
-
-    console.log({ error });
   };
 
   const handleGoogleSignIn = () => {};
