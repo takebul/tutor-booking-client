@@ -1,11 +1,23 @@
-import DateFiltering from "@/components/filter/DateFiltering";
-import SearchFiltering from "@/components/filter/SearchFiltering";
-import TutorsFeaturesCard from "@/components/TutorsFeatures/TutorsFeaturesCard";
+"use client";
 
-const TutorsPage = async ({ searchParams }) => {
-  const { searchTerm } = await searchParams;
-  const res = await fetch(`http://localhost:8541/tutors?search=${searchTerm}`);
-  const tutors = await res.json();
+import DateFiltering from "@/components/filter/DateFiltering";
+import TutorsFeaturesCard from "@/components/TutorsFeatures/TutorsFeaturesCard";
+import { Label, SearchField } from "@heroui/react";
+import { useEffect, useState } from "react";
+
+const TutorsPage = () => {
+  const [tutors, setTutors] = useState([]);
+  const [searching, setSearching] = useState("");
+
+  const fetchTutors = async (search = "") => {
+    const res = await fetch(`http://localhost:8541/tutors?search=${search}`);
+    const data = await res.json();
+    setTutors(data);
+  };
+  console.log(tutors);
+  useEffect(() => {
+    fetchTutors(searching);
+  }, [searching]);
   return (
     <section className="w-11/12 mx-auto">
       <div className="text-center my-5">
@@ -15,7 +27,22 @@ const TutorsPage = async ({ searchParams }) => {
         </p>
       </div>
       <div className="flex gap-4 w-11/12 mx-auto my-4">
-        <SearchFiltering />
+        <div>
+          <SearchField name="search">
+            <Label>Search</Label>
+            <SearchField.Group>
+              <SearchField.SearchIcon />
+              <SearchField.Input
+                value={searching}
+                onChange={(e) => setSearching(e.target.value)}
+                className=""
+                type="text"
+                placeholder="Search..."
+              />
+              <SearchField.ClearButton />
+            </SearchField.Group>
+          </SearchField>
+        </div>
         <DateFiltering />
       </div>
       <div className="grid grid-cols-3 gap-4 mt-4">
