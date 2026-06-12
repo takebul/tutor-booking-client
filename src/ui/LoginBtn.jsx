@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const LoginBtn = ({ children }) => {
+const LoginBtn = ({ children, variant = "solid" }) => {
   return (
-    <StyledWrapper>
+    <StyledWrapper $variant={variant}>
       <button>
         {children}
         <div className="arrow-wrapper">
@@ -16,22 +16,29 @@ const LoginBtn = ({ children }) => {
 
 const StyledWrapper = styled.div`
   button {
-    --primary-color: #645bff;
-    --secondary-color: #fff;
-    --hover-color: #111;
-    --arrow-width: 10px;
+    --arrow-width: 8px;
     --arrow-stroke: 2px;
     box-sizing: border-box;
-    border: 0;
-    border-radius: 20px;
-    color: var(--secondary-color);
-    padding: 1em 1.8em;
-    background: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+    padding: 0.45em 1em;
     display: flex;
-    transition: 0.2s background;
     align-items: center;
-    gap: 0.6em;
-    font-weight: bold;
+    gap: 0.5em;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+
+    /* Solid (Signup) */
+    background: ${({ $variant }) =>
+      $variant === "outline" ? "transparent" : "#2563eb"};
+    color: ${({ $variant }) =>
+      $variant === "outline" ? "#2563eb" : "#ffffff"};
+    border: 1.5px solid #2563eb;
   }
 
   button .arrow-wrapper {
@@ -43,17 +50,20 @@ const StyledWrapper = styled.div`
   button .arrow {
     margin-top: 1px;
     width: var(--arrow-width);
-    background: var(--primary-color);
     height: var(--arrow-stroke);
     position: relative;
     transition: 0.2s;
+    background: ${({ $variant }) =>
+      $variant === "outline" ? "#2563eb" : "#2563eb"};
   }
 
   button .arrow::before {
     content: "";
     box-sizing: border-box;
     position: absolute;
-    border: solid var(--secondary-color);
+    border: solid;
+    border-color: ${({ $variant }) =>
+      $variant === "outline" ? "#2563eb" : "#ffffff"};
     border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
     display: inline-block;
     top: -3px;
@@ -63,16 +73,52 @@ const StyledWrapper = styled.div`
     transform: rotate(-45deg);
   }
 
+  /* Solid hover */
   button:hover {
-    background-color: var(--hover-color);
+    background: ${({ $variant }) =>
+      $variant === "outline" ? "#eff6ff" : "#1d4ed8"};
+    border-color: ${({ $variant }) =>
+      $variant === "outline" ? "#2563eb" : "#1d4ed8"};
+    color: ${({ $variant }) =>
+      $variant === "outline" ? "#1d4ed8" : "#ffffff"};
   }
 
   button:hover .arrow {
-    background: var(--secondary-color);
+    background: ${({ $variant }) =>
+      $variant === "outline" ? "#1d4ed8" : "#ffffff"};
   }
 
-  button:hover .arrow:before {
+  button:hover .arrow::before {
     right: 0;
+    border-color: ${({ $variant }) =>
+      $variant === "outline" ? "#1d4ed8" : "#ffffff"};
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    button {
+      background: ${({ $variant }) =>
+        $variant === "outline" ? "transparent" : "#2563eb"};
+      color: ${({ $variant }) =>
+        $variant === "outline" ? "#60a5fa" : "#ffffff"};
+      border-color: ${({ $variant }) =>
+        $variant === "outline" ? "#3b82f6" : "#2563eb"};
+    }
+
+    button .arrow {
+      background: ${({ $variant }) =>
+        $variant === "outline" ? "#60a5fa" : "#ffffff"};
+    }
+
+    button .arrow::before {
+      border-color: ${({ $variant }) =>
+        $variant === "outline" ? "#60a5fa" : "#ffffff"};
+    }
+
+    button:hover {
+      background: ${({ $variant }) =>
+        $variant === "outline" ? "rgba(59,130,246,0.15)" : "#1d4ed8"};
+    }
   }
 `;
 

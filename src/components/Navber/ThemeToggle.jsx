@@ -1,34 +1,38 @@
 "use client";
+
 import { Moon, Sun } from "@gravity-ui/icons";
-import { Button, Switch } from "@heroui/react";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) {
+    return (
+      <div className="w-9 h-9 rounded-lg bg-zinc-200 dark:bg-zinc-800 animate-pulse" />
+    );
+  }
+
+  const isDark = theme === "dark";
+
   return (
-    <div>
-      <Switch onChange={() => setTheme(theme === "dark" ? "light" : "dark")}>
-        {({ isSelected }) => (
-          <>
-            <Switch.Control
-              className={`h-[31px] w-[51px] bg-blue-500 ${isSelected ? "bg-cyan-500 shadow-[0_0_12px_rgba(6,182,212,0.5)]" : ""}`}
-            >
-              <Switch.Thumb
-                className={`size-[27px] bg-white shadow-sm ${isSelected ? "ms-[22px] shadow-lg" : ""}`}
-              >
-                <Switch.Icon>
-                  {isSelected ? (
-                    <Sun className="size-4 text-cyan-600" />
-                  ) : (
-                    <Moon className="size-4 text-blue-600" />
-                  )}
-                </Switch.Icon>
-              </Switch.Thumb>
-            </Switch.Control>
-          </>
-        )}
-      </Switch>
-    </div>
+    <button
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      className={`
+        w-9 h-9 rounded-lg flex items-center justify-center border transition-all duration-200
+        ${
+          isDark
+            ? "bg-zinc-800 border-zinc-700 text-yellow-400 hover:bg-zinc-700"
+            : "bg-zinc-100 border-zinc-200 text-zinc-500 hover:bg-zinc-200"
+        }
+      `}
+    >
+      {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+    </button>
   );
 };
 
