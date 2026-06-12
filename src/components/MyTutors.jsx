@@ -8,9 +8,12 @@ import { revalidatePage } from "@/lib/serverAction";
 
 const MyTutors = ({ tutor }) => {
   const handleDelete = async () => {
-    const res = await fetch(`http://localhost:8541/myTutor/${tutor?._id}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/myTutor/${tutor?._id}`,
+      {
+        method: "DELETE",
+      },
+    );
     const data = await res.json();
     if (data) {
       toast.success("Tutor Delete Successful");

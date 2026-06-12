@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const TutorsBookingPage = async ({ params }) => {
   const { id } = await params;
-  const res = await fetch(`http://localhost:8541/tutors/${id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${id}`);
   const tutor = await res.json();
 
   const {

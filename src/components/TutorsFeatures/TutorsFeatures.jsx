@@ -1,7 +1,9 @@
 import TutorsFeaturesCard from "./TutorsFeaturesCard";
 
 const TutorsFeatures = async () => {
-  const res = await fetch(`http://localhost:8541/tutorsFeatures`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/tutorsFeatures`,
+  );
   const tutors = await res.json();
   return (
     <section className="w-11/12 mx-auto">

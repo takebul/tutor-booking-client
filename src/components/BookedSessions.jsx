@@ -10,12 +10,15 @@ const BookedSessions = ({ myBookedSession }) => {
     myBookedSession;
 
   const handleCancel = async () => {
-    const res = await fetch(`http://localhost:8541/tutorBookedData/${_id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/tutorBookedData/${_id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
       },
-    });
+    );
     const data = await res.json();
     if (data) {
       toast.success("Booked Session Cancel Successful");

@@ -42,7 +42,7 @@ const TutorsPage = () => {
     }
 
     const res = await fetch(
-      `http://localhost:8541/tutors?${params.toString()}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors?${params.toString()}`,
     );
 
     const data = await res.json();

@@ -25,13 +25,16 @@ const BookSessionPage = ({ tutor, id }) => {
       const formData = new FormData(e.currentTarget);
       const tutorData = Object.fromEntries(formData.entries());
 
-      const res = await fetch(`http://localhost:8541/tutors/${id}`, {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(tutorData),
         },
-        body: JSON.stringify(tutorData),
-      });
+      );
 
       const data = await res.json();
 

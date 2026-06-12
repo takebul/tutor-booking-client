@@ -10,7 +10,9 @@ const MyTutorsPage = async () => {
 
   console.log(userId);
 
-  const res = await fetch(`http://localhost:8541/myTutors/${userId}`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/myTutors/${userId}`,
+  );
   const tutors = await res.json();
 
   console.log(tutors.length);
