@@ -87,9 +87,9 @@ const Hero = () => {
                   <Image
                     src={tutor3}
                     alt="Tutor"
-                    className="w-full h-[420px] object-cover"
+                    className="w-full h-105 object-cover"
                   />
-                  {/* Floating badge */}
+
                   <div className="absolute bottom-4 left-4 bg-white dark:bg-gray-800 rounded-xl px-4 py-3 shadow-lg flex items-center gap-3">
                     <div className="flex -space-x-2">
                       {["AS", "SR", "FM"].map((name, i) => (
@@ -127,7 +127,7 @@ const Hero = () => {
                   <Image
                     src={tutor1}
                     alt="Tutor"
-                    className="w-full h-[420px] object-cover"
+                    className="w-full h-105 object-cover"
                   />
 
                   <div className="absolute top-4 right-4 bg-white dark:bg-gray-800 rounded-xl px-4 py-3 shadow-lg">
@@ -221,7 +221,7 @@ const Hero = () => {
                   <Image
                     src={tutor2}
                     alt="Tutor"
-                    className="w-full h-[420px] object-cover"
+                    className="w-full h-105 object-cover"
                   />
                   <div className="absolute bottom-4 right-4 bg-white dark:bg-gray-800 rounded-xl px-4 py-3 shadow-lg">
                     <p className="text-xs font-semibold text-gray-800 dark:text-white">
