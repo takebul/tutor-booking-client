@@ -21,30 +21,40 @@ const BookSessionPage = ({ tutor, id }) => {
   const handleBooking = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const tutorData = Object.fromEntries(formData.entries());
+    try {
+      const formData = new FormData(e.currentTarget);
+      const tutorData = Object.fromEntries(formData.entries());
 
-    const res = await fetch(`http://localhost:8541/tutors/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(tutorData),
-    });
-    const data = await res.json();
+      const res = await fetch(`http://localhost:8541/tutors/${id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(tutorData),
+      });
 
-    if (data) {
-      toast.success("Tutor Booking is Successful");
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.message);
+        return;
+      }
+
+      toast.success(data.message || "Tutor Booking Successful");
+
       await revalidatePage(`/tutors/${id}`);
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong. Please try again.");
     }
-
-    console.log({ data });
   };
 
   return (
     <div>
       <Modal>
-        <Button isDisabled={remainingSlots === 0}>Book Session</Button>
+        <Button color="primary" isDisabled={remainingSlots <= 0}>
+          {remainingSlots <= 0 ? "Fully Booked" : "Book Now"}
+        </Button>
         <Modal.Backdrop>
           <Modal.Container scroll="outside" placement="auto">
             <Modal.Dialog className="sm:max-w-md">

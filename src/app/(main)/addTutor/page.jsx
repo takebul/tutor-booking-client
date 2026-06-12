@@ -125,7 +125,7 @@ const TutorAddPage = () => {
         <NumberField
           className="w-full"
           defaultValue={10}
-          minValue={0}
+          minValue={1}
           maxValue={100}
           name="remainingSlots"
         >
