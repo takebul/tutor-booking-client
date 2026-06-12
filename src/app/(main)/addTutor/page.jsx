@@ -48,7 +48,7 @@ const TutorAddPage = () => {
       >
         <TextField
           className="w-full"
-          name="name"
+          name="tutorName"
           type="text"
           variant="secondary"
         >

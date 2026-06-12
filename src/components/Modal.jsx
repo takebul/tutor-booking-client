@@ -15,6 +15,7 @@ import {
 } from "@heroui/react";
 import DateFieldComponent from "./DateField";
 import toast from "react-hot-toast";
+import { revalidatePage } from "@/lib/serverAction";
 
 export function EditTutorsData({ children, tutor }) {
   const {
@@ -47,6 +48,7 @@ export function EditTutorsData({ children, tutor }) {
     const data = await res.json();
     if (data) {
       toast.success("Tutor Data Update Successful");
+      await revalidatePage("/myTutors");
     }
   };
   return (
@@ -224,7 +226,9 @@ export function EditTutorsData({ children, tutor }) {
                     <Button slot="close" variant="secondary">
                       Cancel
                     </Button>
-                    <Button type="submit">Update</Button>
+                    <Button type="submit" slot="close">
+                      Update
+                    </Button>
                   </Modal.Footer>
                 </Form>
               </Surface>

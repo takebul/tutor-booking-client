@@ -2,8 +2,9 @@ import DateFiltering from "@/components/filter/DateFiltering";
 import SearchFiltering from "@/components/filter/SearchFiltering";
 import TutorsFeaturesCard from "@/components/TutorsFeatures/TutorsFeaturesCard";
 
-const TutorsPage = async () => {
-  const res = await fetch(`http://localhost:8541/tutors`);
+const TutorsPage = async ({ searchParams }) => {
+  const { searchTerm } = await searchParams;
+  const res = await fetch(`http://localhost:8541/tutors?search=${searchTerm}`);
   const tutors = await res.json();
   return (
     <section className="w-11/12 mx-auto">

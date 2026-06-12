@@ -14,9 +14,8 @@ import {
 import toast from "react-hot-toast";
 
 const BookSessionPage = ({ tutor, id }) => {
-  const { tutorName } = tutor;
+  const { tutorName, remainingSlots } = tutor;
   const session = useSession();
-  console.log(session?.data?.user);
   const user = session?.data?.user;
 
   const handleBooking = async (e) => {
@@ -34,18 +33,18 @@ const BookSessionPage = ({ tutor, id }) => {
     });
     const data = await res.json();
 
-    console.log({ data });
-
     if (data) {
       toast.success("Tutor Booking is Successful");
       await revalidatePage(`/tutors/${id}`);
     }
+
+    console.log({ data });
   };
 
   return (
     <div>
       <Modal>
-        <Button>Book Session</Button>
+        <Button isDisabled={remainingSlots === 0}>Book Session</Button>
         <Modal.Backdrop>
           <Modal.Container scroll="outside" placement="auto">
             <Modal.Dialog className="sm:max-w-md">
