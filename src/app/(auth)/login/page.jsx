@@ -14,11 +14,15 @@ import {
 import { Icon } from "@iconify/react";
 import { error } from "better-auth/api";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const callbackURL = searchParams.get("callbackUrl") || "/tutors";
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -30,7 +34,7 @@ const LoginPage = () => {
       email,
       password,
       rememberMe: true,
-      callbackURL: "/",
+      callbackURL: callbackURL,
     });
     if (data) {
       toast.success("Login successful");
@@ -38,6 +42,9 @@ const LoginPage = () => {
 
     if (error) {
       toast.error(error.message);
+    }
+    if (data) {
+      router.push(callbackURL);
     }
   };
 
@@ -49,6 +56,9 @@ const LoginPage = () => {
       setTimeout(() => {
         toast.success("Login successful");
       }, 1000);
+    }
+    if (data) {
+      router.push(callbackURL);
     }
   };
   return (

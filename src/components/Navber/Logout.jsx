@@ -3,22 +3,25 @@
 import { authClient } from "@/lib/auth-client";
 import LogoutBtn from "@/ui/LogoutBtn";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const Logout = () => {
   const router = useRouter();
+  const handleLogout = async () => {
+    const data = await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.refresh();
+        },
+      },
+    });
+    if (data) {
+      toast.success("Logout Successful");
+    }
+  };
   return (
     <div>
-      <div
-        onClick={async () =>
-          await authClient.signOut({
-            fetchOptions: {
-              onSuccess: () => {
-                router.refresh();
-              },
-            },
-          })
-        }
-      >
+      <div onClick={handleLogout}>
         <LogoutBtn>Logout</LogoutBtn>
       </div>
     </div>

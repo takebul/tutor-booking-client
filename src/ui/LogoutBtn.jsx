@@ -21,74 +21,67 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 36px;
-    height: 36px;
+    width: 45px;
+    height: 45px;
     border: none;
     border-radius: 50%;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition:
-      width 0.3s ease,
-      border-radius 0.3s ease;
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.35);
-    background-color: #ef4444;
-    flex-shrink: 0;
+    transition-duration: 0.3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: rgb(255, 65, 65);
   }
 
+  /* plus sign */
   .sign {
     width: 100%;
+    transition-duration: 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    transition:
-      width 0.3s ease,
-      padding 0.3s ease;
   }
 
   .sign svg {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
+    width: 17px;
   }
 
   .sign svg path {
     fill: white;
   }
-
+  /* text */
   .text {
     position: absolute;
     right: 0%;
     width: 0%;
     opacity: 0;
     color: white;
-    font-size: 0.8rem;
+    font-size: 1.2em;
     font-weight: 600;
-    white-space: nowrap;
-    transition:
-      opacity 0.3s ease,
-      width 0.3s ease;
+    transition-duration: 0.3s;
   }
-
+  /* hover effect on button width */
   .Btn:hover {
-    width: 110px;
-    border-radius: 20px;
+    width: 125px;
+    border-radius: 40px;
+    transition-duration: 0.3s;
   }
 
   .Btn:hover .sign {
-    width: 32%;
-    padding-left: 14px;
+    width: 30%;
+    transition-duration: 0.3s;
+    padding-left: 20px;
   }
-
+  /* hover effect button's text */
   .Btn:hover .text {
     opacity: 1;
-    width: 68%;
+    width: 70%;
+    transition-duration: 0.3s;
     padding-right: 10px;
   }
-
+  /* button click effect*/
   .Btn:active {
-    transform: scale(0.97);
+    transform: translate(2px, 2px);
   }
 `;
 
