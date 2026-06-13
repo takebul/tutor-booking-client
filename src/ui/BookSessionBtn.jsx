@@ -4,7 +4,7 @@ import styled from "styled-components";
 const BookSessionBtn = ({ children }) => {
   return (
     <StyledWrapper>
-      <button className="button w-full">
+      <button className="button">
         {children}
         <svg className="icon" viewBox="0 0 24 24" fill="currentColor">
           <path
@@ -21,70 +21,80 @@ const BookSessionBtn = ({ children }) => {
 const StyledWrapper = styled.div`
   .button {
     position: relative;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-    padding-block: 0.5rem;
-    padding-inline: 1.25rem;
-    background-color: rgb(0 107 179);
-    border-radius: 9999px;
-    display: flex;
+    overflow: hidden;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #ffff;
-    gap: 10px;
-    font-weight: bold;
-    border: 3px solid #ffffff4d;
-    outline: none;
-    overflow: hidden;
-    font-size: 15px;
+    gap: 6px;
+
+    padding: 0.45rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: #2563eb;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-radius: 9999px;
     cursor: pointer;
+    white-space: nowrap;
+
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
   }
 
   .icon {
-    width: 24px;
-    height: 24px;
-    transition: all 0.3s ease-in-out;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
   }
 
-  .button:hover {
-    transform: scale(1.05);
-    border-color: #fff9;
-  }
-
-  .button:hover .icon {
-    transform: translate(4px);
-  }
-
-  .button:hover::before {
-    animation: shine 1.5s ease-out infinite;
-  }
-
+  /* Shine sweep */
   .button::before {
     content: "";
     position: absolute;
-    width: 100px;
+    width: 80px;
     height: 100%;
     background-image: linear-gradient(
       120deg,
-      rgba(255, 255, 255, 0) 30%,
-      rgba(255, 255, 255, 0.8),
-      rgba(255, 255, 255, 0) 70%
+      rgba(255, 255, 255, 0) 20%,
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0) 80%
     );
     top: 0;
-    left: -100px;
+    left: -80px;
+    opacity: 0;
+  }
+
+  .button:hover {
+    transform: scale(1.04);
+    border-color: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+  }
+
+  .button:hover .icon {
+    transform: translateX(3px);
+  }
+
+  .button:hover::before {
+    animation: shine 1.4s ease-out infinite;
     opacity: 0.6;
+  }
+
+  .button:active {
+    transform: scale(0.97);
   }
 
   @keyframes shine {
     0% {
-      left: -100px;
+      left: -80px;
     }
-
     60% {
       left: 100%;
     }
-
-    to {
+    100% {
       left: 100%;
     }
   }
