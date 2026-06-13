@@ -1,6 +1,6 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import { Check, Eye, EyeSlash } from "@gravity-ui/icons";
+import { Eye, EyeSlash } from "@gravity-ui/icons";
 import {
   Button,
   Description,
@@ -54,7 +54,7 @@ const LoginPage = () => {
     if (data) {
       setTimeout(() => {
         toast.success("Login successful");
-      }, 1000);
+      }, 9000);
     }
     if (data) {
       router.push(callbackURL);
