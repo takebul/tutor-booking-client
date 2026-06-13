@@ -57,7 +57,7 @@ const TutorAddPage = () => {
         </TextField>
         <TextField
           className="w-full"
-          name="image"
+          name="tutorImage"
           type="text"
           variant="secondary"
         >

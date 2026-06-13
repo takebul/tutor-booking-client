@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const LogoutBtn = ({ children }) => {
   return (
-    <StyledWrapper>
+    <StyledWrapper className="text-sm">
       <button className="Btn">
         <div className="sign">
           <svg viewBox="0 0 512 512">

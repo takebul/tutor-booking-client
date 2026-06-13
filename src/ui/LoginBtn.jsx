@@ -3,10 +3,10 @@ import styled from "styled-components";
 
 const LoginBtn = ({ children, variant = "solid" }) => {
   return (
-    <StyledWrapper $variant={variant} className="text-sm">
-      <button className="text-sm">
+    <StyledWrapper $variant={variant}>
+      <button>
         {children}
-        <div className="arrow-wrapper font-normal -size-4">
+        <div className="arrow-wrapper">
           <div className="arrow" />
         </div>
       </button>
@@ -16,17 +16,17 @@ const LoginBtn = ({ children, variant = "solid" }) => {
 
 const StyledWrapper = styled.div`
   button {
-    --arrow-width: 6px;
-    --arrow-stroke: 1px;
+    --arrow-width: 8px;
+    --arrow-stroke: 2px;
     box-sizing: border-box;
     border: none;
     border-radius: 10px;
-    padding: 0;
+    padding: 0.45em 1em;
     display: flex;
     align-items: center;
     gap: 0.5em;
-    font-weight: 400;
-    font-size: 0.675rem;
+    font-weight: 600;
+    font-size: 0.875rem;
     cursor: pointer;
     transition:
       background 0.2s,
@@ -69,7 +69,7 @@ const StyledWrapper = styled.div`
     top: -3px;
     right: 3px;
     transition: 0.2s;
-    padding: 1px;
+    padding: 3px;
     transform: rotate(-45deg);
   }
 
