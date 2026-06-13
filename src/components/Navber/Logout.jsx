@@ -2,7 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import LogoutBtn from "@/ui/LogoutBtn";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 const Logout = () => {
@@ -12,6 +12,7 @@ const Logout = () => {
       fetchOptions: {
         onSuccess: () => {
           router.refresh();
+          redirect("#");
         },
       },
     });
