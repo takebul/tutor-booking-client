@@ -66,9 +66,7 @@ const TutorsPage = () => {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Filter bar */}
         <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-4 mb-8 flex flex-wrap gap-4 items-end shadow-sm">
-          {/* Search */}
           <div className="flex-1 min-w-[200px]">
             <SearchField name="search" className="w-full">
               <Label className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide mb-1.5 block">
@@ -87,7 +85,6 @@ const TutorsPage = () => {
             </SearchField>
           </div>
 
-          {/* Start Date */}
           <div className="w-56">
             <DatePicker value={startDate} onChange={setStartDate}>
               <Label className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide mb-1.5 block">
@@ -136,7 +133,6 @@ const TutorsPage = () => {
             </DatePicker>
           </div>
 
-          {/* End Date */}
           <div className="w-56">
             <DatePicker value={endDate} onChange={setEndDate}>
               <Label className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide mb-1.5 block">
@@ -185,7 +181,6 @@ const TutorsPage = () => {
             </DatePicker>
           </div>
 
-          {/* Clear filters */}
           {hasFilters && (
             <button
               onClick={() => {
@@ -200,7 +195,6 @@ const TutorsPage = () => {
           )}
         </div>
 
-        {/* Results count */}
         {!loading && tutors.length > 0 && (
           <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-5">
             Showing{" "}
@@ -220,7 +214,6 @@ const TutorsPage = () => {
           </p>
         )}
 
-        {/* Loading skeleton */}
         {loading && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -240,7 +233,6 @@ const TutorsPage = () => {
           </div>
         )}
 
-        {/* Empty state */}
         {!loading && tutors.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24 text-center">
             <div className="w-16 h-16 rounded-2xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center mb-5">
@@ -281,7 +273,6 @@ const TutorsPage = () => {
           </div>
         )}
 
-        {/* Tutor grid */}
         {!loading && tutors.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {tutors.map((tutor) => (

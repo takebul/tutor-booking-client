@@ -12,7 +12,6 @@ import {
   TextField,
 } from "@heroui/react";
 import { Icon } from "@iconify/react";
-import { error } from "better-auth/api";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
