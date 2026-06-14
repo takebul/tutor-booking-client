@@ -80,10 +80,13 @@ const MyTutors = ({ tutor }) => {
       <td className="px-5 py-4 whitespace-nowrap">
         <div className="flex items-center gap-2">
           <EditTutorsData tutor={tutor}>
-            <button className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-200 dark:hover:border-blue-800 transition-colors">
+            <Button
+              variant="ghost"
+              className="inline-flex items-center gap-1.5 px-3 text-xs font-semibold text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-200 dark:hover:border-blue-800 transition-colors"
+            >
               <Icon icon="gravity-ui:pencil" className="w-3.5 h-3.5" />
               Edit
-            </button>
+            </Button>
           </EditTutorsData>
 
           <AlertDialog>
