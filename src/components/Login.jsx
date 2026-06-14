@@ -1,4 +1,5 @@
 "use client";
+
 import { authClient } from "@/lib/auth-client";
 import { Eye, EyeSlash } from "@gravity-ui/icons";
 import {
@@ -13,7 +14,7 @@ import {
 } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -22,44 +23,54 @@ const fieldClass =
 const labelClass =
   "block text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide mb-1.5";
 
-const SignupPage = () => {
-  const router = useRouter();
+const LoginPage = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const callbackURL = searchParams.get("callbackUrl") || "/";
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const { name, email, password, image } = Object.fromEntries(
-      formData.entries(),
-    );
+    const user = Object.fromEntries(formData.entries());
+    const { password, email } = user;
 
-    const { data, error } = await authClient.signUp.email({
-      name,
+    const { data, error } = await authClient.signIn.email({
       email,
       password,
-      image,
+      rememberMe: true,
+      callbackURL: callbackURL,
     });
     if (data) {
-      toast.success("Account created successfully!");
-      router.push("/login");
+      toast.success("Login successful");
+      router.push(callbackURL);
     }
-    if (error) toast.error(error.message);
+
+    if (error) {
+      toast.error(error.message);
+    }
   };
 
   const handleGoogleSignIn = async () => {
     const data = await authClient.signIn.social({
       provider: "google",
+      callbackURL: callbackURL,
     });
+
+    if (data) {
+      router.push(callbackURL);
+    }
+
     if (data) {
       setTimeout(() => {
-        toast.success("Google Signin Successful");
-      }, 8000);
+        toast.success("Signin successful");
+      }, 9000);
     }
   };
-
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center px-4 py-16">
       <div className="w-full max-w-md">
+        {/* Logo */}
         <div className="flex justify-center mb-8">
           <Link href="/" className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center shadow-sm">
@@ -81,16 +92,19 @@ const SignupPage = () => {
           </Link>
         </div>
 
+        {/* Card */}
         <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm p-8">
+          {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-zinc-900 dark:text-white mb-1">
-              Create an account
+              Welcome back
             </h1>
             <p className="text-zinc-500 dark:text-zinc-400 text-sm">
-              Join TutorBook and start learning today
+              Sign in to your TutorBook account
             </p>
           </div>
 
+          {/* Google */}
           <button
             onClick={handleGoogleSignIn}
             type="button"
@@ -100,30 +114,17 @@ const SignupPage = () => {
             Continue with Google
           </button>
 
+          {/* Divider */}
           <div className="flex items-center gap-3 mb-6">
             <div className="flex-1 h-px bg-zinc-200 dark:bg-zinc-700" />
             <span className="text-xs text-zinc-400 dark:text-zinc-500 font-medium">
-              or sign up with email
+              or continue with email
             </span>
             <div className="flex-1 h-px bg-zinc-200 dark:bg-zinc-700" />
           </div>
 
-          <Form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            <TextField isRequired name="name" type="text">
-              <Label className={labelClass}>Full Name</Label>
-              <Input placeholder="Your full name" className={fieldClass} />
-              <FieldError className="text-xs text-red-500 mt-1" />
-            </TextField>
-
-            <TextField isRequired name="image" type="url">
-              <Label className={labelClass}>Profile Photo URL</Label>
-              <Input
-                placeholder="https://example.com/photo.jpg"
-                className={fieldClass}
-              />
-              <FieldError className="text-xs text-red-500 mt-1" />
-            </TextField>
-
+          {/* Form */}
+          <Form onSubmit={handleLogin} className="flex flex-col gap-5">
             <TextField
               isRequired
               name="email"
@@ -152,12 +153,22 @@ const SignupPage = () => {
                 return null;
               }}
             >
-              <Label className={labelClass}>Password</Label>
+              <div className="flex items-center justify-between mb-1.5">
+                <Label className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">
+                  Password
+                </Label>
+                <Link
+                  href="/forgot-password"
+                  className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+                >
+                  Forgot password?
+                </Link>
+              </div>
               <InputGroup className="flex items-center border border-zinc-200 dark:border-zinc-700 rounded-xl overflow-hidden bg-zinc-50 dark:bg-zinc-800 focus-within:ring-2 focus-within:ring-blue-500 transition">
                 <InputGroup.Input
                   className="flex-1 px-4 py-2.5 text-sm bg-transparent text-zinc-900 dark:text-white placeholder:text-zinc-400 focus:outline-none"
                   type={isVisible ? "text" : "password"}
-                  placeholder="Create a strong password"
+                  placeholder="Enter your password"
                 />
                 <InputGroup.Suffix className="pr-2">
                   <Button
@@ -182,54 +193,28 @@ const SignupPage = () => {
               <FieldError className="text-xs text-red-500 mt-1" />
             </TextField>
 
-            <div className="flex gap-3">
-              <Button
-                type="submit"
-                className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl transition-colors shadow-sm"
-              >
-                Create Account
-              </Button>
-              <Button
-                type="reset"
-                variant="secondary"
-                className="px-5 py-3 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 text-sm font-medium rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
-              >
-                Reset
-              </Button>
-            </div>
-          </Form>
-
-          <p className="text-center text-sm text-zinc-500 dark:text-zinc-400 mt-6">
-            Already have an account?{" "}
-            <Link
-              href="/login"
-              className="font-bold text-blue-600 dark:text-blue-400 hover:underline"
+            <Button
+              type="submit"
+              className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl transition-colors shadow-sm"
             >
               Sign In
+            </Button>
+          </Form>
+
+          {/* Footer */}
+          <p className="text-center text-sm text-zinc-500 dark:text-zinc-400 mt-6">
+            Don&apos;t have an account?{" "}
+            <Link
+              href="/signup"
+              className="font-bold text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              Sign Up
             </Link>
           </p>
         </div>
-
-        <p className="text-center text-xs text-zinc-400 dark:text-zinc-600 mt-4">
-          By signing up, you agree to our{" "}
-          <Link
-            href="/"
-            className="underline hover:text-zinc-600 dark:hover:text-zinc-400"
-          >
-            Terms of Service
-          </Link>{" "}
-          and{" "}
-          <Link
-            href="/"
-            className="underline hover:text-zinc-600 dark:hover:text-zinc-400"
-          >
-            Privacy Policy
-          </Link>
-          .
-        </p>
       </div>
     </main>
   );
 };
 
-export default SignupPage;
+export default LoginPage;

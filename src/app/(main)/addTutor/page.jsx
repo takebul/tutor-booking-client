@@ -1,6 +1,7 @@
 "use client";
 import DateFieldComponent from "@/components/DateField";
 import { useSession } from "@/lib/auth-client";
+import { addTutorDataFetching } from "@/lib/data";
 import {
   Button,
   Form,
@@ -36,14 +37,11 @@ const TutorAddPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const TutorData = Object.fromEntries(formData.entries());
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors`, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ ...TutorData, tutorId: userId }),
-    });
-    const data = await res.json();
+    const data = await addTutorDataFetching(formData, userId);
+
+    console.log(data);
+
     if (data) toast.success("Tutor Added Successfully!");
   };
 
