@@ -128,7 +128,7 @@ const MyTutorsPage = async () => {
                   </thead>
                   <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
                     {tutors.map((tutor) => (
-                      <MyTutors key={tutor?._id} tutor={tutor} />
+                      <MyTutors key={tutor._id} tutor={tutor} />
                     ))}
                   </tbody>
                 </table>
