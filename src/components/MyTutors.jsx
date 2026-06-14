@@ -4,14 +4,12 @@ import { Icon } from "@iconify/react";
 import { EditTutorsData } from "./Modal";
 import toast from "react-hot-toast";
 import { revalidatePage } from "@/lib/serverAction";
+import { deleteTutorDataFetching } from "@/lib/data";
 
 const MyTutors = ({ tutor }) => {
+  const { _id } = tutor;
   const handleDelete = async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/myTutor/${tutor?._id}`,
-      { method: "DELETE" },
-    );
-    const data = await res.json();
+    const data = await deleteTutorDataFetching(_id);
     if (data) {
       toast.success("Tutor deleted successfully");
       await revalidatePage("/myTutors");

@@ -1,11 +1,12 @@
 import BookSessionPage from "@/components/BookSession";
+import { tutorsBookingDetailsDataFetching } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
 const TutorsBookingPage = async ({ params }) => {
   const { id } = await params;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${id}`);
-  const tutor = await res.json();
+
+  const tutor = await tutorsBookingDetailsDataFetching(id);
 
   const {
     tutorName,

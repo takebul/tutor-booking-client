@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "@/lib/auth-client";
+import { bookSessionAddingDataFetching } from "@/lib/data";
 import { revalidatePage } from "@/lib/serverAction";
 import {
   Button,
@@ -23,18 +24,8 @@ const BookSessionPage = ({ tutor, id }) => {
     e.preventDefault();
     try {
       const formData = new FormData(e.currentTarget);
-      const tutorData = Object.fromEntries(formData.entries());
 
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${id}`,
-        {
-          method: "PATCH",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(tutorData),
-        },
-      );
-
-      const data = await res.json();
+      const data = await bookSessionAddingDataFetching(formData, id);
 
       if (!res.ok) {
         toast.error(data.message);

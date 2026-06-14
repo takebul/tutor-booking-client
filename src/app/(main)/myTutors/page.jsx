@@ -1,5 +1,6 @@
 import MyTutors from "@/components/MyTutors";
 import { auth } from "@/lib/auth";
+import { myTutorsDataFetching } from "@/lib/data";
 import { headers } from "next/headers";
 import Link from "next/link";
 
@@ -7,10 +8,7 @@ const MyTutorsPage = async () => {
   const session = await auth.api.getSession({ headers: await headers() });
   const userId = session?.user?.id;
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/myTutors/${userId}`,
-  );
-  const tutors = await res.json();
+  const tutors = await myTutorsDataFetching(userId);
 
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950">

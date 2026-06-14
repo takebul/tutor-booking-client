@@ -1,11 +1,9 @@
 import Link from "next/link";
 import TutorsFeaturesCard from "./TutorsFeaturesCard";
+import { tutorsFeaturesDataFetching } from "@/lib/data";
 
 const TutorsFeatures = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/tutorsFeatures`,
-  );
-  const tutors = await res.json();
+  const tutors = await tutorsFeaturesDataFetching();
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-zinc-50 dark:bg-zinc-900">

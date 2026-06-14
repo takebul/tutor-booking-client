@@ -1,11 +1,9 @@
 import BookedSessions from "@/components/BookedSessions";
+import { myBookedSessionDataFetching } from "@/lib/data";
 import Link from "next/link";
 
 const BookedSessionPage = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/tutorBookedData`,
-  );
-  const myBookedSessions = await res.json();
+  const myBookedSessions = await myBookedSessionDataFetching();
 
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950">

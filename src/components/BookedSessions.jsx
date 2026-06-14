@@ -1,4 +1,5 @@
 "use client";
+import { bookedSessionsCancelDataFetching } from "@/lib/data";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -11,14 +12,7 @@ const BookedSessions = ({ myBookedSession }) => {
   const isCancelled = status === "Cancelled";
 
   const handleCancel = async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/tutorBookedData/${_id}`,
-      {
-        method: "PATCH",
-        headers: { "content-type": "application/json" },
-      },
-    );
-    const data = await res.json();
+    const data = await bookedSessionsCancelDataFetching(_id);
     if (data) {
       toast.success("Session cancelled successfully");
       router.refresh();
