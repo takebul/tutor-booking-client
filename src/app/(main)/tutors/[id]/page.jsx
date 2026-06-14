@@ -3,6 +3,16 @@ import { tutorsBookingDetailsDataFetching } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
+export const generateMetadata = async ({ params }) => {
+  const { id } = await params;
+  const tutor = await tutorsBookingDetailsDataFetching(id);
+
+  return {
+    title: tutor?.tutorName,
+    description: tutor?.experience,
+  };
+};
+
 const TutorsBookingPage = async ({ params }) => {
   const { id } = await params;
 

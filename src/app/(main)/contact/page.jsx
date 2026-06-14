@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Contact us",
+  description: "Tutor Book Contact Page is Here",
+};
+
 const ContactPage = () => {
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950">

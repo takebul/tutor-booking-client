@@ -26,8 +26,8 @@ const BookSessionPage = ({ tutor, id }) => {
       const formData = new FormData(e.currentTarget);
 
       const data = await bookSessionAddingDataFetching(formData, id);
-
-      if (!res.ok) {
+      console.log(data);
+      if (!data?.result?.insertedId) {
         toast.error(data.message);
         return;
       }

@@ -31,6 +31,11 @@ const reviews = [
   },
 ];
 
+export const metadata = {
+  title: "Tutor Book - About",
+  description: `${reviews.text}`,
+};
+
 const QuoteIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

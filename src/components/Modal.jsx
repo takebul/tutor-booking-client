@@ -38,7 +38,7 @@ export function EditTutorsData({ children, tutor }) {
     subject,
     sessionStartDate,
     remainingSlots,
-    name,
+    tutorName,
     mode,
     location,
     institution,
@@ -95,7 +95,7 @@ export function EditTutorsData({ children, tutor }) {
                   <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
                     Update details for{" "}
                     <span className="font-semibold text-blue-600 dark:text-blue-400">
-                      {name}
+                      {tutorName}
                     </span>
                   </p>
                 </div>
@@ -111,7 +111,7 @@ export function EditTutorsData({ children, tutor }) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <TextField
                       className="w-full"
-                      defaultValue={name}
+                      defaultValue={tutorName}
                       name="name"
                       type="text"
                       variant="secondary"

@@ -2,6 +2,10 @@ import BookedSessions from "@/components/BookedSessions";
 import { myBookedSessionDataFetching } from "@/lib/data";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Tutor Booked Sessions",
+};
+
 const BookedSessionPage = async () => {
   const myBookedSessions = await myBookedSessionDataFetching();
 

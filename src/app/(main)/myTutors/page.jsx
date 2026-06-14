@@ -4,6 +4,11 @@ import { myTutorsDataFetching } from "@/lib/data";
 import { headers } from "next/headers";
 import Link from "next/link";
 
+export const metadata = {
+  title: "My Tutors",
+  description: "Tutor Book Added Booking Tutor Page is Here.",
+};
+
 const MyTutorsPage = async () => {
   const session = await auth.api.getSession({ headers: await headers() });
   const userId = session?.user?.id;

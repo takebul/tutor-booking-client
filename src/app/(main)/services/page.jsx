@@ -25,6 +25,11 @@ const faqs = [
   },
 ];
 
+export const metadata = {
+  title: "Tutor Book Service",
+  description: `${faqs.q}`,
+};
+
 const ServicesPage = () => {
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
