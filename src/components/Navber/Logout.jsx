@@ -22,11 +22,9 @@ const Logout = () => {
   };
   return (
     <div>
-      <div onClick={handleLogout}>
-        <Button variant="danger" className={"rounded-sm"}>
-          Logout
-        </Button>
-      </div>
+      <Button onClick={handleLogout} variant="danger" className={"rounded-sm"}>
+        Logout
+      </Button>
     </div>
   );
 };
