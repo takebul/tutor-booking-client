@@ -13,7 +13,11 @@ const MyTutorsPage = async () => {
   const session = await auth.api.getSession({ headers: await headers() });
   const userId = session?.user?.id;
 
-  const tutors = await myTutorsDataFetching(userId);
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  const tutors = await myTutorsDataFetching(userId, token);
 
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950">

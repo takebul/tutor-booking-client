@@ -1,6 +1,6 @@
 "use client";
 import DateFieldComponent from "@/components/DateField";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { addTutorDataFetching } from "@/lib/data";
 import {
   Button,
@@ -38,7 +38,9 @@ const AddTutor = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
-    const data = await addTutorDataFetching(formData, userId);
+    const { data: tokenData } = await authClient.token();
+
+    const data = await addTutorDataFetching(formData, userId, tokenData);
 
     console.log(data);
 

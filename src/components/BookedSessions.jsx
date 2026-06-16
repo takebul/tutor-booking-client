@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { bookedSessionsCancelDataFetching } from "@/lib/data";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/navigation";
@@ -12,7 +13,8 @@ const BookedSessions = ({ myBookedSession }) => {
   const isCancelled = status === "Cancelled";
 
   const handleCancel = async () => {
-    const data = await bookedSessionsCancelDataFetching(_id);
+    const { data: tokenData } = await authClient.token();
+    const data = await bookedSessionsCancelDataFetching(_id, tokenData);
     if (data) {
       toast.success("Session cancelled successfully");
       router.refresh();

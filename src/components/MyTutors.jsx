@@ -5,11 +5,13 @@ import { EditTutorsData } from "./Modal";
 import toast from "react-hot-toast";
 import { revalidatePage } from "@/lib/serverAction";
 import { deleteTutorDataFetching } from "@/lib/data";
+import { authClient } from "@/lib/auth-client";
 
 const MyTutors = ({ tutor }) => {
   const { _id } = tutor;
   const handleDelete = async () => {
-    const data = await deleteTutorDataFetching(_id);
+    const { data: tokenData } = await authClient.token();
+    const data = await deleteTutorDataFetching(_id, tokenData);
     if (data) {
       toast.success("Tutor deleted successfully");
       await revalidatePage("/myTutors");

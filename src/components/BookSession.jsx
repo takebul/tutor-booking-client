@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { bookSessionAddingDataFetching } from "@/lib/data";
 import { revalidatePage } from "@/lib/serverAction";
 import {
@@ -25,7 +25,9 @@ const BookSessionPage = ({ tutor, id }) => {
     try {
       const formData = new FormData(e.currentTarget);
 
-      const data = await bookSessionAddingDataFetching(formData, id);
+      const { data: tokenData } = await authClient.token();
+
+      const data = await bookSessionAddingDataFetching(formData, id, tokenData);
       console.log(data);
       if (!data?.result?.insertedId) {
         toast.error(data.message);

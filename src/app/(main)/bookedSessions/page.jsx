@@ -1,5 +1,7 @@
 import BookedSessions from "@/components/BookedSessions";
+import { auth } from "@/lib/auth";
 import { myBookedSessionDataFetching } from "@/lib/data";
+import { headers } from "next/headers";
 import Link from "next/link";
 
 export const metadata = {
@@ -7,7 +9,10 @@ export const metadata = {
 };
 
 const BookedSessionPage = async () => {
-  const myBookedSessions = await myBookedSessionDataFetching();
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const myBookedSessions = await myBookedSessionDataFetching(token);
 
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-950">

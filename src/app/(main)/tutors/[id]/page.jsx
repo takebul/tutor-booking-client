@@ -1,11 +1,20 @@
 import BookSessionPage from "@/components/BookSession";
+import { auth } from "@/lib/auth";
 import { tutorsBookingDetailsDataFetching } from "@/lib/data";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export const generateMetadata = async ({ params }) => {
   const { id } = await params;
-  const tutor = await tutorsBookingDetailsDataFetching(id);
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  const tutor = await tutorsBookingDetailsDataFetching(id, token);
+
+  if (!tutor) notFound();
 
   return {
     title: tutor?.tutorName,
