@@ -8,13 +8,8 @@ import { notFound } from "next/navigation";
 
 export const generateMetadata = async ({ params }) => {
   const { id } = await params;
-  const { token } = await auth.api.getToken({
-    headers: await headers(),
-  });
 
-  const tutor = await tutorsBookingDetailsDataFetching(id, token);
-
-  if (!tutor) notFound();
+  const tutor = await tutorsBookingDetailsDataFetching(id);
 
   return {
     title: tutor?.tutorName,
@@ -25,7 +20,13 @@ export const generateMetadata = async ({ params }) => {
 const TutorsBookingPage = async ({ params }) => {
   const { id } = await params;
 
-  const tutor = await tutorsBookingDetailsDataFetching(id);
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  const tutor = await tutorsBookingDetailsDataFetching(id, token);
+
+  if (!tutor) notFound();
 
   const {
     tutorName,
@@ -200,7 +201,7 @@ const TutorsBookingPage = async ({ params }) => {
               <Image
                 src={
                   tutorImage ||
-                  "https://t3.ftcdn.net/jpg/18/74/54/54/240_F_1874545443_7KFbKGSBWFTSR7QUejTrUn4QmFsH4erN.jpg"
+                  "https://media.istockphoto.com/id/2152038865/photo/students-doing-a-creativity-project-with-their-teacher-in-a-classroom.jpg"
                 }
                 alt={tutorName || "Tutor Image"}
                 width={600}

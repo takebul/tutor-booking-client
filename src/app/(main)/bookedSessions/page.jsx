@@ -103,9 +103,9 @@ const BookedSessionPage = async () => {
                         "Enrolled",
                         "Status",
                         "Action",
-                      ].map((h) => (
+                      ].map((h, ind) => (
                         <th
-                          key={h}
+                          key={ind}
                           className="text-left px-5 py-3.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide whitespace-nowrap"
                         >
                           {h}

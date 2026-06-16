@@ -1,7 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import LogoutBtn from "@/ui/LogoutBtn";
+import { Button } from "@heroui/react";
 import { redirect, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -23,7 +23,9 @@ const Logout = () => {
   return (
     <div>
       <div onClick={handleLogout}>
-        <LogoutBtn>Logout</LogoutBtn>
+        <Button variant="danger" className={"rounded-sm"}>
+          Logout
+        </Button>
       </div>
     </div>
   );

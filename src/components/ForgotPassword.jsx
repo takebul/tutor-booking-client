@@ -55,8 +55,6 @@ export default function ForgotPassWord() {
       if (error) {
         toast.error(error.message || "An error occurred");
       }
-
-      console.log({ data, error });
     } catch (err) {
       console.error(err);
     } finally {

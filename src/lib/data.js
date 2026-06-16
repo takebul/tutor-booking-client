@@ -3,12 +3,15 @@ export const addTutorDataFetching = async (formData, userId, tokenData) => {
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors`, {
     method: "POST",
-    headers: { "content-type": "application/json" },
-    authorization: `Bearer ${tokenData?.token}`,
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${tokenData?.token}`,
+    },
+
     body: JSON.stringify({ ...TutorData, tutorId: userId }),
   });
   const data = await res.json();
-  console.log(data);
+
   return data;
 };
 
@@ -16,7 +19,10 @@ export const myBookedSessionDataFetching = async (token) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/tutorBookedData`,
     {
-      authorization: `Bearer ${token}`,
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     },
   );
   const myBookedSessions = await res.json();
@@ -54,8 +60,10 @@ export const bookedSessionsCancelDataFetching = async (_id, tokenData) => {
     `${process.env.NEXT_PUBLIC_SERVER_URL}/tutorBookedData/${_id}`,
     {
       method: "PATCH",
-      headers: { "content-type": "application/json" },
-      authorization: `Bearer ${tokenData?.token}`,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
+      },
     },
   );
   const data = await res.json();
@@ -72,8 +80,11 @@ export const bookSessionAddingDataFetching = async (
     `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${id}`,
     {
       method: "PATCH",
-      headers: { "content-type": "application/json" },
-      authorization: `Bearer ${tokenData?.token}`,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
+      },
+
       body: JSON.stringify(tutorData),
     },
   );
@@ -89,8 +100,11 @@ export const updateTutorDataFetching = async (formData, _id, tokenData) => {
     `${process.env.NEXT_PUBLIC_SERVER_URL}/myTutor/${_id}`,
     {
       method: "PATCH",
-      headers: { "content-type": "application/json" },
-      authorization: `Bearer ${tokenData?.token}`,
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
+      },
+
       body: JSON.stringify(tutorData),
     },
   );

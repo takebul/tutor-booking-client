@@ -43,7 +43,7 @@ export function EditTutorsData({ children, tutor }) {
     mode,
     location,
     institution,
-    image,
+    tutorImage,
     hourlyFee,
     experience,
     availableTimeSlot,
@@ -127,8 +127,8 @@ export function EditTutorsData({ children, tutor }) {
                     </TextField>
                     <TextField
                       className="w-full"
-                      defaultValue={image}
-                      name="image"
+                      defaultValue={tutorImage}
+                      name="tutorImage"
                       type="text"
                       variant="secondary"
                     >

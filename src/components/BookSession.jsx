@@ -28,7 +28,7 @@ const BookSessionPage = ({ tutor, id }) => {
       const { data: tokenData } = await authClient.token();
 
       const data = await bookSessionAddingDataFetching(formData, id, tokenData);
-      console.log(data);
+
       if (!data?.result?.insertedId) {
         toast.error(data.message);
         return;

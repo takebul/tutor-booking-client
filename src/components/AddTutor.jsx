@@ -42,8 +42,6 @@ const AddTutor = () => {
 
     const data = await addTutorDataFetching(formData, userId, tokenData);
 
-    console.log(data);
-
     if (data) toast.success("Tutor Added Successfully!");
   };
 
@@ -89,7 +87,7 @@ const AddTutor = () => {
               </TextField>
               <TextField
                 className="w-full"
-                name="image"
+                name="tutorImage"
                 type="text"
                 variant="secondary"
               >
